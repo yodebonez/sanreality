@@ -1,0 +1,115 @@
+
+counting value in checkbox
+
+<input type = "checkbox" value = "box" name = "checkbox[]"/>
+
+$checked_arr = $_POST['checkbox'];
+$count = count($checked_arr);
+echo "There are ".$count." checkboxe(s) are checked";
+
+
+
+
+
+<label for="dropdown">Dropdown:</label></th><td><select id="dropdown" name="dropdown">
+<option value="" disabled="disabled" selected="selected">Please select an option</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+
+</select>
+
+<div id='checkbox'>
+    <div data-id="1">
+<label for="id_checkbox_0"><input id="id_checkbox_0" name="checkbox" type="checkbox" value="1" /> 1</label>
+    </div>
+    <div data-id="2">
+<label for="id_checkbox_1"><input id="id_checkbox_1" name="checkbox" type="checkbox" value="2" /> 2</label>
+    </div>
+    <div data-id="3">
+<label for="id_checkbox_2"><input id="id_checkbox_2" name="checkbox" type="checkbox" value="3" /> 3</label>
+    </div>
+    <div data-id="4">
+<label for="id_checkbox_3"><input id="id_checkbox_3" name="checkbox" type="checkbox" value="4" /> 4</label>
+    </div>
+</div>
+
+
+
+
+ $( document ).ready(function() {  
+    $('#checkbox').hide();
+    $("#dropdown").change(function() {
+        var index = $(this).val();
+        $("[data-id]").show();
+        $("[data-id=" + index + "]").hide();
+        $('#checkbox').show();
+     });
+    
+ });
+
+
+
+
+
+
+
+
+
+
+ ///   for dropdown
+
+
+ limit = 0; //set limit
+
+checkboxes = document.querySelectorAll('.checkboxdiv input[type="checkbox"]'); //select all checkboxes
+
+function checker(elem) {
+  if (elem.checked) { //if checked, increment counter
+    limit++;
+  } else {
+    limit--; //else, decrement counter
+  }
+
+  for (i = 0; i < checkboxes.length; i++) { // loop through all 
+
+    if (limit == 2) {
+      if (!checkboxes[i].checked) {
+        checkboxes[i].disabled = true; // and disable unchecked checkboxes
+
+      }
+
+    } else { //if limit is less than two
+
+      if (!checkboxes[i].checked) {
+        checkboxes[i].disabled = false; // enable unchecked checkboxes
+      }
+
+    }
+
+    }
+
+}
+
+for (i = 0; i < checkboxes.length; i++) {
+  checkboxes[i].onclick = function() { //call function on click and send current element as param
+    checker(this);
+  }
+}
+
+
+
+
+
+<div class="checkboxdiv">
+    <input type="hidden" name="Extras" value="">
+    <input type="checkbox" name="Extras" value="Wedges"><label>Wedges</label> <br/>
+    <input type="checkbox" name="Extras" value="Chips"><label>Chips</label> <br/>
+    <input type="checkbox" name="Extras" value="Garlic Bread"><label>Garlic Bread</label> <br/>
+    <input type="checkbox" name="Extras" value="Chicken Wings"><label>Chicken Wings</label> <br/>
+    <input type="checkbox" name="Extras" value="Cheese Sticks"><label>Cheese Sticks</label>
+</div>
+
+
+// end of it  . disable checkbox after selecting it
